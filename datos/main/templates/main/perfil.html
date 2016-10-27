@@ -1,0 +1,24 @@
+{%if request.user.is_authenticated%}
+HOLA {{request.user.perfil.alias}}
+<br>
+ya estas grandecito cabrón {{request.user.perfil.edad}}
+<br>
+Te voy a llamar {{request.user.perfil.tel}}
+<br>
+porque eres {{request.user.perfil.genero}} y {{request.user.perfil.ocupacion}}
+
+<form method="post" action=".">
+	<label>Nombre</label>
+	<input type="text" name="nombre" placeholder="El nombre de tu producto">
+	<br>
+	<label>Descripcion</label>
+	<input type="text" name="desc" placeholder="Descripcion del producto">
+	<br>
+	<label>Precio</label>
+	<input type="text" name="precio" placeholder="EL precio del producto">
+	<br>
+	{%csrf_token%}
+	<input type="submit">
+</form>
+
+{%endif%}
