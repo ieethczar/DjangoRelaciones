@@ -1,0 +1,20 @@
+<h1>Lista de Cines</h1>
+
+{%for cine in cines%}
+
+	<form action="." method="post">
+		<input type="hidden" name="cine" value="{{cine.id}}">
+		<input type="submit" value="{{cine.nombre}}">
+		{%csrf_token%}	
+	</form>
+	
+{%endfor%}
+
+{%if pelis%}
+<h2>Las pelisculas en {{cines}}</h2>
+{%for peli in pelis%}
+<p>{{peli.titulo}} - {{peli.genero}}</p>
+{%empty%}
+<h2>no ubo peliculas en este cine</h2>
+{%endfor%}
+{%endif%}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
-from .models import Producto
+from .models import Producto,Cine
 
 class Home(View):
 	def get(self,request):
@@ -19,3 +19,20 @@ class Perfil(View):
 		new_p.save()
 		return redirect('Perfil')
 
+class Cines(View):
+	def get(self,request):
+		context={
+		'cines':Cine.objects.all()
+		}
+		return render(request,'main/cine.html',context)
+	def post(self,request):
+		id=request.POST.get('cine')
+		cine=Cine.objects.get(id=id)
+		pelis=cine.peliculas.all()
+		context={
+		'cines':Cine.objects.all(),
+		'pelis':pelis,
+		'cine':cine
+		}
+		return render(request,'main/cine.html',context)
+		
